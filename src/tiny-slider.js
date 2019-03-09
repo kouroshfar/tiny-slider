@@ -87,7 +87,8 @@ export var tns = function(options) {
     preventScrollOnTouch: false,
     freezable: true,
     onInit: false,
-    useLocalStorage: true
+    useLocalStorage: true,
+    textDirection: 'ltr'
   }, options || {});
   
   var doc = document,
@@ -256,6 +257,7 @@ export var tns = function(options) {
       autoHeight = getOption('autoHeight'),
       controls = getOption('controls'),
       controlsText = getOption('controlsText'),
+      textDirection = getOption('textDirection'),
       nav = getOption('nav'),
       touch = getOption('touch'),
       mouseDrag = getOption('mouseDrag'),
@@ -2075,6 +2077,9 @@ export var tns = function(options) {
 
   function doContainerTransform (val) {
     if (val == null) { val = getContainerTransformValue(); }
+    if (textDirection === 'rtl' && val.charAt(0) === '-') {
+      val = val.substr(1)
+    }
     container.style[transformAttr] = transformPrefix + val + transformPostfix;
   }
 
@@ -2602,7 +2607,11 @@ export var tns = function(options) {
             if (horizontal && !autoWidth) {
               var indexMoved = - dist * items / (viewport + gutter);
               indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
-              index += indexMoved;
+              if (textDirection === 'rtl') { 
+                index += indexMoved * -1;
+              } else {
+                index += indexMoved;
+              }
             } else {
               var moved = - (translateInit + dist);
               if (moved <= 0) {
