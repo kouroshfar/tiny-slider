@@ -1,4 +1,6 @@
 # tiny-slider 2.0
+Forked to support RTL - orignal version here: https://github.com/ganlanyuan/tiny-slider
+
 [![](https://data.jsdelivr.com/v1/package/npm/tiny-slider/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tiny-slider)
 ![version](https://img.shields.io/badge/Version-2.9.1-green.svg)  
 Tiny slider for all purposes, inspired by [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/).   
